@@ -32,19 +32,36 @@
 
 -- 5
   Get the number of orders for each customer. NOTE: It is OK if those without orders are not included in results.
+    SELECT "customers"."first_name", COUNT("orders"."address_id") FROM "customers"
+    JOIN "addresses"
+    On "customers"."id" = "addresses"."customer_id"
+    JOIN "orders"
+    ON "addresses"."id" = "orders"."address_id"
+    GROUP BY "customers"."first_name";
 
 -- 6
   How many customers do we have?
-  --
-  How many products do we carry?
-  --
-  What is the total available on-hand quantity of diet pepsi?
-  --
-  Stretch
+    SELECT COUNT(*) as "number of customers" FROM "customers";
 
+-- 7
+  How many products do we carry?
+    SELECT COUNT(*) as "number of products" FROM "products";
+
+-- 8
+  What is the total available on-hand quantity of diet pepsi?
+    SELECT COUNT("warehouse_product"."on_hand") as "diet pepsi" FROM "products"
+    JOIN "warehouse_product"
+    ON "products"."id" = "warehouse_product"."product_id"
+    WHERE "products"."description" = 'diet pepsi';
+
+
+
+Stretch
+
+-- 9
   How much was the total cost for each order?
-  --
+-- 10
   How much has each customer spent in total?
-  --
+-- 11
   How much has each customer spent in total? Customers who have spent $0 should still show up in the table. It should say 0, not NULL (research coalesce).
-  --
+-- 12
