@@ -53,13 +53,18 @@
     JOIN "warehouse_product"
     ON "products"."id" = "warehouse_product"."product_id"
     WHERE "products"."description" = 'diet pepsi';
-
-
-
+    
 Stretch
 
 -- 9
   How much was the total cost for each order?
+    SELECT "line_items"."order_id" as "order", SUM("line_items"."quantity" * "products"."unit_price") 
+    FROM "orders"
+    JOIN "line_items"
+    ON "orders"."id" = "line_items"."order_id"
+    JOIN "products"
+    ON "line_items"."product_id" = "products"."id"
+    GROUP BY "line_items"."order_id";
 -- 10
   How much has each customer spent in total?
 -- 11
