@@ -53,7 +53,14 @@
     JOIN "warehouse_product"
     ON "products"."id" = "warehouse_product"."product_id"
     WHERE "products"."description" = 'diet pepsi';
-    
+
+
+    -- OR MAYBE
+
+    SELECT SUM("on_hand") FROM "warehouse_product" WHERE "product_id" = 6;
+
+
+
 Stretch
 
 -- 9
